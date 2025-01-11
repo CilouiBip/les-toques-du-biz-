@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Les Toqués du Biz</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 1rem;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.25rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            background: #9a6ff3;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        button:hover {
+            background: #8456e9;
+        }
+        .flash {
+            padding: 1rem;
+            background: #e8f5e9;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            color: #2e7d32;
+        }
+        .preview {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 1rem;
+        }
+        .image-preview {
+            background: #eee;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Administration - Les Toqués du Biz</h1>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Section Images -->
+    <div class="section">
+        <h2>Images</h2>
+        
+        <form action="{{ url_for('upload_image') }}" method="post" enctype="multipart/form-data">
+            <div>
+                <label>Logo (240x80px)</label>
+                <input type="file" name="image" accept="image/*" required>
+                <input type="hidden" name="type" value="logo">
+                <button type="submit">Upload Logo</button>
+                <div class="image-preview">
+                    <img src="{{ url_for('uploaded_file', filename='logo.png') }}" alt="Logo" class="preview">
+                </div>
+            </div>
+        </form>
+
+        <form action="{{ url_for('upload_image') }}" method="post" enctype="multipart/form-data">
+            <div>
+                <label>Image Hero (1200x800px)</label>
+                <input type="file" name="image" accept="image/*" required>
+                <input type="hidden" name="type" value="hero">
+                <button type="submit">Upload Hero</button>
+                <div class="image-preview">
+                    <img src="{{ url_for('uploaded_file', filename='hero.jpg') }}" alt="Hero" class="preview">
+                </div>
+            </div>
+        </form>
+
+        <form action="{{ url_for('upload_image') }}" method="post" enctype="multipart/form-data">
+            <div>
+                <label>Photo de profil (240x240px)</label>
+                <input type="file" name="image" accept="image/*" required>
+                <input type="hidden" name="type" value="profile">
+                <button type="submit">Upload Profile</button>
+                <div class="image-preview">
+                    <img src="{{ url_for('uploaded_file', filename='mehdi.jpg') }}" alt="Profile" class="preview">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Section Textes -->
+    <div class="section">
+        <h2>Textes</h2>
+        <form action="{{ url_for('update_config') }}" method="post">
+            <label>Titre principal</label>
+            <input type="text" name="headline" value="{{ config.headline }}" required>
+            
+            <label>Introduction</label>
+            <textarea name="intro" required>{{ config.intro }}</textarea>
+            
+            <label>Présentation 1</label>
+            <textarea name="presentation1" required>{{ config.presentation1 }}</textarea>
+            
+            <label>Présentation 2</label>
+            <textarea name="presentation2" required>{{ config.presentation2 }}</textarea>
+            
+            <label>Points clés</label>
+            {% for bullet in config.bullets %}
+                <input type="text" name="bullet_{{ loop.index0 }}" value="{{ bullet }}" required>
+            {% endfor %}
+            
+            <label>Réassurance</label>
+            <textarea name="reassurance" required>{{ config.reassurance }}</textarea>
+            
+            <label>Texte du bouton</label>
+            <input type="text" name="cta_button" value="{{ config.cta_button }}" required>
+            
+            <label>Message de confirmation</label>
+            <input type="text" name="form_notice" value="{{ config.form_notice }}" required>
+            
+            <label>URL ConvertKit</label>
+            <input type="url" name="convertkit_url" value="{{ config.convertkit_url }}" required>
+            
+            <button type="submit">Sauvegarder les modifications</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <h2>Actions</h2>
+        <a href="{{ url_for('index') }}" target="_blank">
+            <button type="button">Voir la landing page</button>
+        </a>
+    </div>
+</body>
+</html>

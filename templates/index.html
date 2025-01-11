@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Les Toqués du Biz – Scaler sans pleurer!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Police Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #9a6ff3;
+      --secondary: #b284ff;
+      --bg-dark: #0a0a0a;
+      --text-color: #ffffff;
+      --text-secondary: rgba(255,255,255,0.75);
+      --primary-glow: rgba(154,111,243,0.5);
+      --text-glow: rgba(255,255,255,0.3);
+      --neon-box-shadow: 0 0 15px var(--primary-glow);
+      --hero-gradient: radial-gradient(circle at top, rgba(154,111,243,0.1), transparent 60%);
+      
+      --font-family: 'Inter', sans-serif;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-color);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header avec effets néon */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 2rem;
+      height: 48px;
+      background: var(--bg-dark);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .header-left img {
+      height: 24px;
+      width: auto;
+    }
+
+    .brand-title {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav li {
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color var(--transition-speed) ease,
+                  text-shadow var(--transition-speed) ease;
+    }
+
+    nav a:hover {
+      color: var(--text-color);
+      text-shadow: 0 0 8px var(--text-glow);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--hero-gradient);
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .hero-content {
+      text-align: left;
+      max-width: 600px;
+    }
+
+    .hero-proof {
+      display: inline-block;
+      background: rgba(154, 111, 243, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      margin-bottom: 2rem;
+      border: 1px solid rgba(154, 111, 243, 0.2);
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title .accent {
+      color: var(--primary);
+      display: block;
+    }
+
+    .hero-tagline {
+      font-size: 1.25rem;
+      color: #bbb;
+      margin-top: 1.5rem;
+      font-weight: 500;
+      max-width: 500px;
+    }
+
+    .hero-right {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-right:hover {
+      transform: rotate(5deg);
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: var(--neon-box-shadow);
+      background: var(--primary);
+      padding: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .hero-right img:hover {
+      box-shadow: 0 0 25px var(--primary);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(154, 111, 243, 0.2);
+    }
+
+    .content-section {
+      max-width: 800px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .experience-block {
+      margin-bottom: 4rem;
+    }
+
+    .experience-block p {
+      color: var(--text-secondary);
+    }
+
+    .experience-block .highlight {
+      background: rgba(154, 111, 243, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: rgba(154, 111, 243, 0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .feature-card p {
+      color: #bbb;
+      line-height: 1.6;
+    }
+
+    .value-box {
+      background: rgba(154, 111, 243, 0.05);
+      border-radius: 16px;
+      padding: 3rem;
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .value-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .value-item .icon {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .value-item h4 {
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-item p {
+      font-size: 0.9rem;
+      color: #bbb;
+      line-height: 1.4;
+    }
+
+    .newsletter-form {
+      background: rgba(154, 111, 243, 0.08);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .newsletter-form h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-form .form-container {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(154, 111, 243, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .newsletter-form button[type="submit"] {
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      background: var(--primary);
+      color: white;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .newsletter-form button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(154, 111, 243, 0.2);
+    }
+
+    .newsletter-form .form-notice {
+      text-align: center;
+      color: #bbb;
+      margin: 2rem 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <img src="images/Logo toqué du biz.jpg" alt="Logo">
+      <h2 class="brand-title">Les Toqués du <span style="color: var(--primary)">Biz</span></h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Qui je suis</a></li>
+        <li><a href="#">Les outils</a></li>
+        <li><a href="#">La newsletter</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-top">
+      <div class="hero-content">
+        <span class="hero-proof">+500 entrepreneurs accompagnés 🚀</span>
+        <h1 class="hero-title">
+          <span class="accent">Scaler</span>
+          <span class="accent">sans</span>
+          <span>pleurer!</span>
+        </h1>
+        <p class="hero-tagline">Optimisez vos opérations, automatisez vos process, et développez votre business sereinement</p>
+        <a href="#newsletter" class="hero-cta">Je veux être accompagné →</a>
+      </div>
+      <div class="hero-right">
+        <img src="/assets/mehdi.jpg" alt="Mehdi" />
+      </div>
+    </div>
+
+    <div class="hero-steps">
+      <div class="step-item">
+        <h3>Simplifiez</h3>
+        <p>Clarifiez vos process et éliminez la complexité inutile</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-item">
+        <h3>Accélérez</h3>
+        <p>Automatisez et optimisez pour gagner en efficacité</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-item">
+        <h3>Répétez</h3>
+        <p>Scalez sereinement avec des systèmes qui fonctionnent</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="content-section">
+    <div class="experience-block">
+      <p>
+        <span class="highlight">15 ans de terrain :</span> j'ai dirigé des équipes jusqu'à 2 000 personnes et managé des P&L multimillionnaires. Maintenant, j'aide les solopreneurs à passer le cap du "j'ai plus de temps" sans embaucher 10 personnes.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Fais plus avec moins</h3>
+        <p>Augmente tes ventes tout en réduisant ta charge de travail grâce à des systèmes efficaces</p>
+      </div>
+      <div class="feature-card">
+        <h3>Stop à la complexité</h3>
+        <p>Finis les multiples outils et freelances à coordonner. Simplifie pour mieux scaler</p>
+      </div>
+      <div class="feature-card">
+        <h3>Focus sur l'essentiel</h3>
+        <p>2-3 emails par semaine, courts et pratiques, sans bullshit marketing</p>
+      </div>
+    </div>
+
+    <!-- Value Proposition -->
+    <div class="value-box">
+      <h2>Dans chaque email, tu reçois :</h2>
+      <div class="value-grid">
+        <div class="value-item">
+          <span class="icon">✓</span>
+          <h4>1 conseil actionnable</h4>
+          <p>Marketing, orga, mindset</p>
+        </div>
+        <div class="value-item">
+          <span class="icon">↗</span>
+          <h4>1 retour d'expérience</h4>
+          <p>Basé sur du vécu</p>
+        </div>
+        <div class="value-item">
+          <span class="icon">⚡</span>
+          <h4>1 astuce temps/argent</h4>
+          <p>À appliquer immédiatement</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter Form -->
+    <div class="newsletter-form">
+      <h2>Rejoins la newsletter "Les Toqués du Biz"</h2>
+      <div class="form-container">
+        <input type="email" placeholder="Email" required>
+        <button type="submit">S'abonner</button>
+      </div>
+      <p class="form-notice">Zéro spam, désinscription en 1 clic.</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Les Toqués du Biz. Tous droits réservés.
+  </footer>
+</body>
+</html>

@@ -45,7 +45,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 2rem;
+      padding: 0.7rem 2rem;
       height: 48px;
       background: var(--bg-dark);
     }
@@ -94,25 +94,28 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 80vh;
-      padding: 4rem 2rem;
-      text-align: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 1rem 2rem;
       position: relative;
       overflow: hidden;
-      background: var(--hero-gradient);
     }
 
     .hero-top {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 4rem;
-      margin-bottom: 4rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .hero-content {
-      text-align: left;
-      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
 
     .hero-proof {
@@ -122,20 +125,29 @@
       border-radius: 100px;
       font-size: 0.9rem;
       color: var(--text-color);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       border: 1px solid rgba(154, 111, 243, 0.2);
     }
 
     .hero-title {
-      font-size: clamp(3.5rem, 8vw, 5rem);
+      font-size: clamp(3rem, 6vw, 4rem);
       font-weight: 800;
       line-height: 1.1;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+      display: inline-flex;
+      gap: 0.5rem;
     }
 
     .hero-title .accent {
       color: var(--primary);
-      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      max-width: 800px;
     }
 
     .hero-tagline {
@@ -172,22 +184,42 @@
       box-shadow: 0 0 25px var(--primary);
     }
 
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      background: var(--primary);
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
+    .email-form {
+      display: flex;
+      gap: 1rem;
       margin-top: 2rem;
-      transition: all 0.3s ease;
-      text-decoration: none;
+      margin-bottom: 0.5rem;
     }
 
-    .hero-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(154, 111, 243, 0.2);
+    .email-input {
+      padding: 1rem 1.5rem;
+      width: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .email-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .submit-button {
+      padding: 1rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .spam-notice {
+      margin-top: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
 
     .content-section {
@@ -212,72 +244,59 @@
       font-weight: 500;
     }
 
-    .features-grid {
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      margin: 3rem 0;
+      margin: 0;
+      max-width: 800px;
+      padding: 0 2rem;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .feature-card {
-      background: rgba(154, 111, 243, 0.05);
+    .stat-card {
+      background: rgba(18, 18, 23, 0.95);
       padding: 2rem;
       border-radius: 12px;
-      transition: transform 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .feature-card h3 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-    }
-
-    .feature-card p {
-      color: #bbb;
-      line-height: 1.6;
-    }
-
-    .value-box {
-      background: rgba(154, 111, 243, 0.05);
-      border-radius: 16px;
-      padding: 3rem;
-      margin: 3rem 0;
-      text-align: center;
-    }
-
-    .value-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .value-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
     }
 
-    .value-item .icon {
-      font-size: 2rem;
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(154, 111, 243, 0.15);
+      background: rgba(18, 18, 23, 0.98);
+    }
+
+    .stat-title {
       color: var(--primary);
-    }
-
-    .value-item h4 {
+      font-size: 2.5rem;
       font-weight: 600;
-      color: white;
       margin-bottom: 0.5rem;
     }
 
-    .value-item p {
+    .stat-text {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-subtext {
+      color: var(--text-color);
       font-size: 0.9rem;
-      color: #bbb;
       line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+      }
     }
 
     .newsletter-form {
@@ -335,6 +354,329 @@
       margin: 2rem 0;
       font-size: 0.9rem;
     }
+
+    /* Style pour la section présentation */
+    .experience-section {
+      text-align: center;
+      margin: 2rem 0;
+      max-width: 800px;
+      color: var(--text-secondary);
+    }
+    
+    .experience-section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    
+    .experience-highlight {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* Style pour les bénéfices email */
+    .email-benefits {
+      text-align: center;
+      margin: 2rem 0;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(154, 111, 243, 0.2);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+    
+    .email-benefits h2 {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+    }
+    
+    .benefits-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .benefit-item {
+      flex: 1;
+      text-align: center;
+      min-width: 0; /* Pour éviter le débordement */
+    }
+    
+    .benefit-icon {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .benefit-item h3 {
+      color: var(--text-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      white-space: nowrap; /* Empêche le retour à la ligne */
+    }
+    
+    .benefit-item p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      white-space: nowrap; /* Empêche le retour à la ligne */
+    }
+
+    /* Styles pour les étapes avec animations et effets visuels améliorés */
+    .hero-steps {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin: 2rem 0;
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .step-icon {
+      font-size: 3.5rem;
+      color: var(--primary);
+      text-shadow: 0 0 20px var(--primary-glow);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-icon::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: rgba(154, 111, 243, 0.1);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+
+    .step-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-color);
+      text-shadow: 0 0 8px var(--text-glow);
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+
+    /* Animation au survol */
+    .step-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .step-item:hover .step-icon {
+      color: var(--secondary);
+      text-shadow: 0 0 30px var(--primary-glow);
+    }
+
+    .step-item:hover .step-icon::after {
+      width: 100px;
+      height: 100px;
+      background: rgba(154, 111, 243, 0.2);
+    }
+
+    .step-item:hover .step-title {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Ligne de connexion entre les étapes */
+    .hero-steps::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--primary) 20%, 
+        var(--primary) 80%, 
+        transparent 100%
+      );
+    }
+
+    .hero-steps::before {
+      display: none;
+    }
+
+    .author-section {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      margin: 1.5rem auto;
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+
+    .author-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+      flex-shrink: 0;
+    }
+
+    .author-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: left;
+    }
+
+    .author-name {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .author-tagline {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .highlight {
+      position: relative;
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .highlight::after {
+      content: "";
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      bottom: 0;
+      height: 0.6em;
+      background-color: rgba(154, 111, 243, 0.3);
+      z-index: -1;
+      transform: rotate(-1deg);
+    }
+
+    @media (max-width: 768px) {
+      .author-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+      }
+
+      .author-content {
+        text-align: center;
+      }
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .experience-card {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      width: 100%;
+    }
+
+    .card-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .experience-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .experience-card p {
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-top: 4rem;  
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .section-title svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+    }
+
+    .stats-grid {
+      margin-top: 2rem;
+    }
+
+    .about-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 0;  
+    }
+
+    .author-section {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
   </style>
 </head>
 <body>
@@ -357,83 +699,95 @@
   <section class="hero-section">
     <div class="hero-top">
       <div class="hero-content">
-        <span class="hero-proof">+500 entrepreneurs accompagnés 🚀</span>
+        <span class="hero-proof">+200 entrepreneurs accompagnés 🚀</span>
         <h1 class="hero-title">
-          <span class="accent">Scaler</span>
-          <span class="accent">sans</span>
-          <span>pleurer!</span>
+          <span class="accent">Scaler</span><span class="accent">sans</span><span>pleurer!</span>
         </h1>
-        <p class="hero-tagline">Optimisez vos opérations, automatisez vos process, et développez votre business sereinement</p>
-        <a href="#newsletter" class="hero-cta">Je veux être accompagné →</a>
-      </div>
-      <div class="hero-right">
-        <img src="/assets/mehdi.jpg" alt="Mehdi" />
-      </div>
-    </div>
+        <p class="hero-subtitle">Chaque mardi, reçois LA newsletter qui t'apprend à générer plus avec moins</p>
 
-    <div class="hero-steps">
-      <div class="step-item">
-        <h3>Simplifiez</h3>
-        <p>Clarifiez vos process et éliminez la complexité inutile</p>
-      </div>
-      <div class="step-arrow">→</div>
-      <div class="step-item">
-        <h3>Accélérez</h3>
-        <p>Automatisez et optimisez pour gagner en efficacité</p>
-      </div>
-      <div class="step-arrow">→</div>
-      <div class="step-item">
-        <h3>Répétez</h3>
-        <p>Scalez sereinement avec des systèmes qui fonctionnent</p>
+        <form class="email-form">
+          <input type="email" class="email-input" placeholder="Ton email" required>
+          <button type="submit" class="submit-button">Je reçois les solutions →</button>
+        </form>
+        <p class="spam-notice">Zéro spam • Désinscription en 1 clic •</p>
+
+        <div class="hero-steps">
+          <div class="step-item">
+            <div class="step-icon">≡</div>
+            <h3 class="step-title">Simplifiez</h3>
+          </div>
+          <div class="step-item">
+            <div class="step-icon">»</div>
+            <h3 class="step-title">Accélérez</h3>
+          </div>
+          <div class="step-item">
+            <div class="step-icon">↻</div>
+            <h3 class="step-title">Répétez</h3>
+          </div>
+        </div>
+
+        <div class="email-benefits">
+          <h2>Dans chaque email, tu reçois :</h2>
+          <div class="benefits-grid">
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <h3>1 conseil actionnable</h3>
+              <p>Marketing, orga, mindset</p>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">↗</div>
+              <h3>1 retour d'expérience</h3>
+              <p>Basé sur du vécu</p>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">€</div>
+              <h3>1 astuce temps/argent</h3>
+              <p>À appliquer immédiatement</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-title">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Qui suis-je ?
+        </h3>
+        
+        <!-- Section auteur et stats combinées -->
+        <div class="about-section">
+          <div class="author-section">
+            <img src="/assets/mehdi.jpg" alt="Mehdi" class="author-photo">
+            <div class="author-content">
+              <h2 class="author-name">Mehdi</h2>
+              <p class="author-tagline">Ma seule patronne c'est <span class="highlight">ma fille</span></p>
+            </div>
+          </div>
+
+          <!-- Stats directement dans la même section -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-title">15 ans</div>
+              <div class="stat-subtext">de scaling d'entreprises</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-title">+100M</div>
+              <div class="stat-subtext">Gestion de P&L de dizaines de millions d'euros</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-title">2000</div>
+              <div class="stat-subtext">personnes dirigées</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="content-section">
-    <div class="experience-block">
-      <p>
-        <span class="highlight">15 ans de terrain :</span> j'ai dirigé des équipes jusqu'à 2 000 personnes et managé des P&L multimillionnaires. Maintenant, j'aide les solopreneurs à passer le cap du "j'ai plus de temps" sans embaucher 10 personnes.
-      </p>
-    </div>
-
-    <!-- Cards -->
-    <div class="features-grid">
-      <div class="feature-card">
-        <h3>Fais plus avec moins</h3>
-        <p>Augmente tes ventes tout en réduisant ta charge de travail grâce à des systèmes efficaces</p>
-      </div>
-      <div class="feature-card">
-        <h3>Stop à la complexité</h3>
-        <p>Finis les multiples outils et freelances à coordonner. Simplifie pour mieux scaler</p>
-      </div>
-      <div class="feature-card">
-        <h3>Focus sur l'essentiel</h3>
-        <p>2-3 emails par semaine, courts et pratiques, sans bullshit marketing</p>
-      </div>
-    </div>
-
-    <!-- Value Proposition -->
-    <div class="value-box">
-      <h2>Dans chaque email, tu reçois :</h2>
-      <div class="value-grid">
-        <div class="value-item">
-          <span class="icon">✓</span>
-          <h4>1 conseil actionnable</h4>
-          <p>Marketing, orga, mindset</p>
-        </div>
-        <div class="value-item">
-          <span class="icon">↗</span>
-          <h4>1 retour d'expérience</h4>
-          <p>Basé sur du vécu</p>
-        </div>
-        <div class="value-item">
-          <span class="icon">⚡</span>
-          <h4>1 astuce temps/argent</h4>
-          <p>À appliquer immédiatement</p>
-        </div>
-      </div>
-    </div>
-
     <!-- Newsletter Form -->
     <div class="newsletter-form">
       <h2>Rejoins la newsletter "Les Toqués du Biz"</h2>

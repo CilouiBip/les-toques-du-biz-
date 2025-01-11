@@ -2,8 +2,12 @@ services:
   - type: web
     name: les-toques-du-biz
     env: python
-    buildCommand: pip install -r requirements.txt && pip install gunicorn
-    startCommand: gunicorn main:app
+    buildCommand: pip install gunicorn && pip install -r requirements.txt
+    startCommand: gunicorn main:app --bind 0.0.0.0:$PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.18
+      - key: PYTHONUNBUFFERED
+        value: "true"
+      - key: FLASK_ENV
+        value: "production"

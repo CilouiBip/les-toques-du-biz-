@@ -1,44 +1,85 @@
-# Les Toqués du Biz - Landing Page
+# Les Toqués du Biz - Documentation
 
-## Guide d'ajout des images
+## Informations du Projet
+- **Nom du projet Google Cloud** : les-toques-du-biz
+- **URL du site** : https://zenalacarte.com
+- **Région App Engine** : europe-west1
 
-### 1. Préparation des images
+## Configuration du Projet
 
-Placez vos images dans le dossier `images/` avec les spécifications suivantes :
+### Domaine et DNS
+- **Domaine principal** : zenalacarte.com
+- **Sous-domaine** : www.zenalacarte.com
+- **Gestion DNS** : Automatique via Google Cloud
+- **SSL** : Géré par Google, renouvellement automatique
 
-#### Logo (`images/logo.png`)
-- Dimensions : 240x80px
-- Format : PNG avec transparence
-- Taille max : 20KB
-- Nom du fichier : `logo.png`
-
-#### Image Hero (`images/hero.jpg`)
-- Dimensions : 1200x800px
-- Format : JPEG ou WebP
-- Taille max : 200KB
-- Nom du fichier : `hero.jpg`
-
-#### Photo de profil (`images/mehdi.jpg`)
-- Dimensions : 240x240px
-- Format : JPEG ou WebP
-- Taille max : 50KB
-- Nom du fichier : `mehdi.jpg`
-
-### 2. Optimisation des images
-
-1. Ouvrez ImageOptim (installé dans Applications)
-2. Glissez-déposez vos images
-3. Attendez la fin de l'optimisation
-
-### 3. Conversion WebP (optionnel mais recommandé)
-```bash
-cwebp -q 80 images/hero.jpg -o images/hero.webp
-cwebp -q 85 images/mehdi.jpg -o images/mehdi.webp
-```
-
-### 4. Vérification
-Une fois les images placées, ouvrez index.html dans votre navigateur pour vérifier que tout s'affiche correctement.
+### Intégrations
+- **Formulaire Newsletter** : ConvertKit
+  - ID du formulaire : 7556250
+  - Data UID : 306a5b25be
+  - URL d'action : https://app.kit.com/forms/7556250/subscriptions
 
 ## Déploiement
-1. Uploadez tout le dossier sur votre hébergeur
-2. Remplacez l'URL du formulaire ConvertKit dans index.html
+
+### Prérequis
+```bash
+# Installation des dépendances
+pip install -r requirements.txt
+```
+
+### Commandes Importantes
+1. **Test en local**
+   ```bash
+   python3 -m flask run --port 9000
+   ```
+
+2. **Déploiement rapide**
+   ```bash
+   ./deploy.sh
+   ```
+   ou
+   ```bash
+   gcloud app deploy
+   ```
+
+### Structure des Fichiers
+- `app.py` : Application Flask principale
+- `templates/index.html` : Page d'accueil
+- `static/` : Fichiers statiques (CSS, JS, images)
+- `deploy.sh` : Script de déploiement rapide
+- `app.yaml` : Configuration App Engine
+- `requirements.txt` : Dépendances Python
+
+## Maintenance
+
+### Mise à jour du Site
+1. Modifier les fichiers nécessaires
+2. Tester en local (port 9000)
+3. Déployer avec `./deploy.sh`
+
+### Commandes Google Cloud Utiles
+```bash
+# Voir les logs
+gcloud app logs tail
+
+# Ouvrir la console
+gcloud app browse
+
+# Vérifier le projet actif
+gcloud config get-value project
+```
+
+## Sécurité
+- SSL/HTTPS activé et géré automatiquement
+- Certificats auto-renouvelés par Google
+- Sécurité gérée par App Engine
+
+## Contact et Support
+- Propriétaire : mehdi@zenalacarte.com
+- Projet Google Cloud : [Console](https://console.cloud.google.com/appengine?project=les-toques-du-biz)
+
+## Dépendances Principales
+- Flask 3.0.0
+- Python-dotenv 1.0.0
+- Flask-WTF 1.2.1
+- Pillow 10.1.0

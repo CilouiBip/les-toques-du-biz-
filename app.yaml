@@ -1,0 +1,12 @@
+runtime: python39
+env_variables:
+  PYTHONUNBUFFERED: "true"
+
+handlers:
+- url: /static
+  static_dir: static
+  secure: always
+
+- url: /.*
+  script: auto
+  secure: always

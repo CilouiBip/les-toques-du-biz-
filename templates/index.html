@@ -184,20 +184,26 @@
       box-shadow: 0 0 25px var(--primary);
     }
 
+    /* Styles du formulaire */
     .email-form {
       display: flex;
       gap: 1rem;
       margin-top: 2rem;
-      margin-bottom: 0.5rem;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .formkit-field {
+      flex: 1;
     }
 
     .email-input {
-      padding: 1rem 1.5rem;
-      width: 400px;
-      background: rgba(255, 255, 255, 0.1);
+      width: 100%;
+      background-color: rgba(32, 32, 35, 0.8);
+      color: white;
       border: none;
       border-radius: 8px;
-      color: var(--text-color);
+      padding: 1rem;
       font-size: 1rem;
     }
 
@@ -206,20 +212,26 @@
     }
 
     .submit-button {
-      padding: 1rem 1.5rem;
-      background: var(--primary);
+      background-color: var(--primary);
       color: white;
       border: none;
       border-radius: 8px;
-      font-weight: 500;
+      padding: 1rem 2rem;
       cursor: pointer;
       transition: all 0.3s ease;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .submit-button:hover {
+      background-color: var(--secondary);
     }
 
     .spam-notice {
-      margin-top: 0.75rem;
-      color: var(--text-secondary);
+      margin-top: 0.5rem;
       font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.7;
     }
 
     .content-section {
@@ -677,13 +689,31 @@
       margin: 0;
       padding: 0;
     }
+
+    /* Style pour l'indicateur de temps de lecture */
+    .reading-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(154, 111, 243, 0.1);
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+      color: var(--primary);
+      font-size: 0.9rem;
+      margin: 1.5rem 0;
+    }
+
+    .reading-time svg {
+      width: 1em;
+      height: 1em;
+    }
   </style>
 </head>
 <body>
   <!-- HEADER -->
   <header>
     <div class="header-left">
-      <img src="images/Logo toqué du biz.jpg" alt="Logo">
+      <img src="/static/images/logo.jpg" alt="Logo">
       <h2 class="brand-title">Les Toqués du <span style="color: var(--primary)">Biz</span></h2>
     </div>
     <nav>
@@ -703,13 +733,40 @@
         <h1 class="hero-title">
           <span class="accent">Scaler</span><span class="accent">sans</span><span>pleurer!</span>
         </h1>
-        <p class="hero-subtitle">Chaque mardi, reçois LA newsletter qui t'apprend à générer plus avec moins</p>
-
-        <form class="email-form">
-          <input type="email" class="email-input" placeholder="Ton email" required>
-          <button type="submit" class="submit-button">Je reçois les solutions →</button>
+        <p class="hero-subtitle">Reçois chaque mardi une dose de conseils actionnables pour faire grandir ton business sans y laisser ta santé mentale</p>
+        
+        <form 
+          action="https://app.kit.com/forms/7556250/subscriptions"
+          method="post"
+          class="email-form"
+          data-sv-form="7556250"
+          data-uid="306a5b25be"
+          data-format="inline"
+          data-version="5"
+        >
+          <div class="formkit-field">
+            <input
+              type="email"
+              name="email_address"
+              placeholder="Ton email"
+              required
+              class="email-input"
+            />
+          </div>
+          <button type="submit" class="submit-button">
+            Je reçois les solutions →
+          </button>
         </form>
+
         <p class="spam-notice">Zéro spam • Désinscription en 1 clic •</p>
+
+        <div class="reading-time">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+            <path d="M13 7h-2v6l4.5 2.7.75-1.23-3.25-1.97z"/>
+          </svg>
+          Lecture 2 mins
+        </div>
 
         <div class="hero-steps">
           <div class="step-item">
@@ -758,7 +815,7 @@
         <!-- Section auteur et stats combinées -->
         <div class="about-section">
           <div class="author-section">
-            <img src="/assets/mehdi.jpg" alt="Mehdi" class="author-photo">
+            <img src="/static/images/mehdi.jpg" alt="Mehdi" class="author-photo">
             <div class="author-content">
               <h2 class="author-name">Mehdi</h2>
               <p class="author-tagline">Ma seule patronne c'est <span class="highlight">ma fille</span></p>
@@ -791,11 +848,11 @@
     <!-- Newsletter Form -->
     <div class="newsletter-form">
       <h2>Rejoins la newsletter "Les Toqués du Biz"</h2>
-      <div class="form-container">
-        <input type="email" placeholder="Email" required>
-        <button type="submit">S'abonner</button>
-      </div>
-      <p class="form-notice">Zéro spam, désinscription en 1 clic.</p>
+      <form action="{{ config.convertkit_url }}" method="post" target="_blank">
+        <input type="email" name="email_address" placeholder="Ton email" required>
+        <button type="submit">{{ config.cta_button }}</button>
+      </form>
+      <p class="form-notice">{{ config.form_notice }}</p>
     </div>
   </div>
 

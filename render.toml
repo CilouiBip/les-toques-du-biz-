@@ -1,0 +1,10 @@
+[build]
+buildCommand = "pip install -r requirements.txt"
+
+[start]
+startCommand = "gunicorn main:app --bind 0.0.0.0:$PORT"
+
+[env]
+PYTHON_VERSION = "3.9.18"
+PYTHONUNBUFFERED = "true"
+FLASK_ENV = "production"

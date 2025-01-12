@@ -713,7 +713,7 @@
   <!-- HEADER -->
   <header>
     <div class="header-left">
-      <img src="/static/images/logo.jpg" alt="Logo">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo">
       <h2 class="brand-title">Les Toqués du <span style="color: var(--primary)">Biz</span></h2>
     </div>
     <nav>
@@ -815,7 +815,7 @@
         <!-- Section auteur et stats combinées -->
         <div class="about-section">
           <div class="author-section">
-            <img src="/static/images/mehdi.jpg" alt="Mehdi" class="author-photo">
+            <img src="{{ url_for('static', filename='images/mehdi.jpg') }}" alt="Mehdi" class="author-photo">
             <div class="author-content">
               <h2 class="author-name">Mehdi</h2>
               <p class="author-tagline">Ma seule patronne c'est <span class="highlight">ma fille</span></p>

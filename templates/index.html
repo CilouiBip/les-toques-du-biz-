@@ -15,9 +15,8 @@
       --bg-dark: #0a0a0a;
       --text-color: #ffffff;
       --text-secondary: rgba(255,255,255,0.75);
-      --primary-glow: rgba(154,111,243,0.5);
       --text-glow: rgba(255,255,255,0.3);
-      --neon-box-shadow: 0 0 15px var(--primary-glow);
+      --neon-box-shadow: 0 0 15px rgba(154,111,243,0.5);
       --hero-gradient: radial-gradient(circle at top, rgba(154,111,243,0.1), transparent 60%);
       
       --font-family: 'Inter', sans-serif;
@@ -248,12 +247,19 @@
       color: var(--text-secondary);
     }
 
-    .experience-block .highlight {
-      background: rgba(154, 111, 243, 0.1);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
+    /* Style unique pour highlight */
+    .highlight {
+      background: rgba(154, 111, 243, 0.15);
       color: var(--primary);
-      font-weight: 500;
+      font-weight: 600;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      display: inline-block;
+      transition: background 0.2s ease;
+    }
+
+    .highlight:hover {
+      background: rgba(154, 111, 243, 0.25);
     }
 
     .stats-grid {
@@ -567,36 +573,6 @@
       font-weight: 500;
     }
 
-    .highlight {
-      position: relative;
-      color: var(--text-color);
-      font-weight: 600;
-    }
-
-    .highlight::after {
-      content: "";
-      position: absolute;
-      left: -2px;
-      right: -2px;
-      bottom: 0;
-      height: 0.6em;
-      background-color: rgba(154, 111, 243, 0.3);
-      z-index: -1;
-      transform: rotate(-1deg);
-    }
-
-    @media (max-width: 768px) {
-      .author-section {
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-      }
-
-      .author-content {
-        text-align: center;
-      }
-    }
-
     .experience-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -707,6 +683,86 @@
       width: 1em;
       height: 1em;
     }
+
+    /* Nouveaux styles pour les sections newsletter */
+    .pain-point-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: rgba(154, 111, 243, 0.08);
+      border-left: 3px solid var(--primary);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(154, 111, 243, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .pain-point-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(154, 111, 243, 0.1);
+    }
+
+    .pain-point-section p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 0;
+      color: var(--text-color);
+    }
+
+    .weekly-benefits-section {
+      margin: 3rem 0;
+    }
+
+    .weekly-benefits-section .section-title {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+    }
+
+    .benefits-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .benefit-box {
+      background: rgba(31, 31, 31, 0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+      flex: 1 1 300px;
+      max-width: 320px;
+      text-align: center;
+      border: 1px solid rgba(154, 111, 243, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .benefit-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary);
+    }
+
+    .benefit-box h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .benefit-box p {
+      color: var(--text-secondary);
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    /* Ajustement pour mobile */
+    @media (max-width: 768px) {
+      .benefit-box {
+        flex: 1 1 100%;
+        margin: 0 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -783,26 +839,35 @@
           </div>
         </div>
 
-        <div class="email-benefits">
-          <h2>Dans chaque email, tu reçois :</h2>
-          <div class="benefits-grid">
-            <div class="benefit-item">
-              <div class="benefit-icon">✓</div>
-              <h3>1 conseil actionnable</h3>
-              <p>Marketing, orga, mindset</p>
+        <div class="pain-point-section">
+          <p>
+            Tu <span class="highlight">galères à scaler</span> ton business tout seul&nbsp;? 
+            Cette newsletter t'aide à <span class="highlight">simplifier</span>, 
+            <span class="highlight">accélérer</span> et <span class="highlight">répéter</span> 
+            ce qui marche, pour que ton activité grandisse sans que ta 
+            <span class="highlight">charge mentale explose</span>.
+          </p>
+        </div>
+
+        <section class="weekly-benefits-section">
+          <h2 class="section-title">Chaque semaine, tu reçois&nbsp;:</h2>
+          <div class="benefits-wrapper">
+            <div class="benefit-box">
+              <h3>Méthodes simples</h3>
+              <p>Pour <span class="highlight">scaler sans recruter</span> dix personnes</p>
             </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">↗</div>
-              <h3>1 retour d'expérience</h3>
-              <p>Basé sur du vécu</p>
+
+            <div class="benefit-box">
+              <h3>Stratégies éprouvées</h3>
+              <p>Pour <span class="highlight">booster ton CA rapidement</span></p>
             </div>
-            <div class="benefit-item">
-              <div class="benefit-icon">€</div>
-              <h3>1 astuce temps/argent</h3>
-              <p>À appliquer immédiatement</p>
+
+            <div class="benefit-box">
+              <h3>Conseils anti-épuisement</h3>
+              <p>Basés sur de vraies expériences d'entrepreneurs</p>
             </div>
           </div>
-        </div>
+        </section>
 
         <h3 class="section-title">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
